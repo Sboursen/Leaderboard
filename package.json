@@ -6,7 +6,11 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "start": "webpack serve --open"
+    "start": "webpack serve --open",
+    "lint:js": "eslint ./src/**/*.js",
+    "lint:css": "stylelint ./src/*.{css,scss}",
+    "lintFix:js": "eslint ./src/**/*.js --fix",
+    "lintFix:css": "stylelint ./src/*.{css,scss} --fix"
   },
   "repository": {
     "type": "git",
