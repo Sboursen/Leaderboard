@@ -1,42 +1,45 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# LeaderBoard
 
-> Description the project.
-
+> **Leaderboard** is website that displays the scores submitted by all players. It also allows the current user to submit his/her score. All data is preserved thanks to the external Leaderboard API service.
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- Webpack
+- ![](https://img.shields.io/badge/HTML-5-orange)
+- ![](https://img.shields.io/badge/Tailwind-CSS-blue)
+- ![](https://img.shields.io/badge/JavaScript-ES6-yellow)
+- ![](https://img.shields.io/badge/Webpack-5-green)
 
-## Live Demo (if available)
+## Milestones
 
-[Live Demo Link](https://livedemo.com)
+- [x] Milestone 1: **Project Structure**
+- [ ] Milestone 1: **Send and receive data from API.**
+- [ ] Milestone 1: **Final touches.**
 
+## sneak peek
+
+![](./src/images/app-screenshot.png)
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+**Prerequisites:** A Web Browser (preferably FireFox or Chrome)
 
+### **Option 1**
 
-To get a local copy up and running follow these simple example steps.
+#### Use the live Website
 
-### Prerequisites
+[Leaderboard Website](https://sboursen.github.io/Leaderboard/)
 
-### Setup
+### **Option 2**
 
-### Install
+#### Set up your own copy locally
 
-### Usage
-
-### Run tests
-
-### Deployment
-
-
+- Clone [the GitHub Repository](https://github.com/Sboursen/Leaderboard)
+- Go to the Project `cd Leaderboard`
+- Run `npm install` to install the _dependencies_
+  \_ Run `npm run start` to run the live server.
 
 ## About me
 
@@ -44,35 +47,18 @@ To get a local copy up and running follow these simple example steps.
 
 - GitHub: [@Sboursen](https://github.com/Sboursen)
 - Twitter: [@sboursen_dev](https://twitter.com/sboursen_dev)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/sboursen)
+- LinkedIn: [@sboursen](https://linkedin.com/in/sboursen)
 
 ## Contributors
 
-> Kudos to these wonderful
-> people who brought my attention
-> to multiple issue with
-> this project 🙏🙏🙏
-
 Contributions, issues, and feature requests are welcome!
+
 Feel free to check the [issues page](../../issues/).
 
 ## Show your support
 
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
-
-## Acknowledgements
-
-- [link1]()
-- [link2]()
-- [link3]()
-
 ## 📝 License
 
-This project is [MIT](./LICENSE.md) licensed.
-
+This project is [MIT](./MIT.md) licensed.
