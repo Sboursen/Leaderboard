@@ -5,12 +5,51 @@
   <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
-  <title>Webpack Exercise</title>
+  <title>Leaderboard</title>
 <script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
 
-<body class=" bg-slate-900 w-full h-full">
-  <h1 class="text-5xl">Hello webpack!</h1>
-  <h2 class="text-blue-600 "> hello2</h2>
+<body class=" bg-white w-full h-screen font-body font-bold">
+  <h1 class="block w-full text-5xl py-12 px-9">Leaderboard
+  </h1>
+  <main
+    class="flex flex-row gap-20 justify-center items-start m-20">
+    <section
+      class="scores flex flex-col gap-6 w-full justify-between items-center">
+      <div
+        class="header flex justify-between items-center w-full">
+        <h2 class="text-3xl py-3">Recent scores
+        </h2>
+        <button type="button"
+          class="button">Refresh</button>
+      </div>
+      <ul class="list border-4 border-black w-full">
+        <li><span>Name: 100</span></li>
+        <li><span>Name: 200</span></li>
+        <li><span>Name: 300</span></li>
+        <li><span>Name: 400</span></li>
+        <li><span>Name: 500</span></li>
+        <li><span>Name: 600</span></li>
+      </ul>
+    </section>
+    <section
+      class="add-score flex flex-col gap-4 w-full justify-between items-center">
+      <h2 class="text-3xl py-4">Add your score</h2>
+      <form action="#"
+        class="submit-score flex flex-col gap-6">
+        <label for="name">
+          <input class="input" type="text" id="name-input"
+            name="name" placeholder="Your name">
+        </label>
+
+        <label for="score">
+          <input class="input" type="text" id="score-input"
+            name="score" placeholder="Your score">
+        </label>
+        <button type="submit"
+          class="button self-end">Submit</button>
+      </form>
+    </section>
+  </main>
 </body>
 
 </html>
