@@ -5,12 +5,42 @@
   <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
-  <title>Webpack Exercise</title>
+  <title>Leaderboard</title>
 </head>
 
-<body class=" bg-slate-900 w-full h-full">
-  <h1 class="text-5xl">Hello webpack!</h1>
-  <h2 class="text-blue-600 "> hello2</h2>
+<body class=" bg-white w-full h-full">
+  <h1 class="text-5xl">Leaderboard</h1>
+  <main>
+    <section class="scores">
+      <div class="header">
+        <h2 class="text-2xl">Recent scores</h2>
+        <button type="button"
+          class="text-lg shadow-lg">Refresh</button>
+      </div>
+      <ul class="list">
+        <li><span>Name: 100</span></li>
+        <li><span>Name: 200</span></li>
+        <li><span>Name: 300</span></li>
+        <li><span>Name: 400</span></li>
+        <li><span>Name: 500</span></li>
+        <li><span>Name: 600</span></li>
+      </ul>
+    </section>
+    <section class="add-score">
+      <h2 class="text-2xl">Add you score</h2>
+      <form action="#" class="submit-score">
+        <label for="name">
+          <input type="text" id="name-input" name="name">
+        </label>
+
+        <label for="score">
+          <input type="text" id="score-input" name="score">
+        </label>
+        <button type="submit"
+          class="text-lg shadow-lg"></button>
+      </form>
+    </section>
+  </main>
 </body>
 
 </html>
