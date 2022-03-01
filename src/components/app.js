@@ -1,6 +1,7 @@
 import leaderBoard from './api';
 import Score from './score';
 import { scoreList } from './utils';
+
 export default class Application {
   constructor() {
     this.leaderBoard = leaderBoard;
@@ -12,8 +13,7 @@ export default class Application {
     return scoreObj;
   };
 
-  #createScoreElement = (score) =>
-    `<li>${score.getName()}: ${score.getScore()}</li>`;
+  #createScoreElement = (score) => `<li>${score.getName()}: ${score.getScore()}</li>`;
 
   #clearList = () => {
     this.scoreList.innerHTML = '';
