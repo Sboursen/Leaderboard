@@ -1,13 +1,6 @@
-import _ from 'lodash';
 import './style.css';
+import Application from './components/app';
 
-function component() {
-  const element = document.createElement('div');
+const application = new Application();
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  return element;
-}
-
-document.body.appendChild(component());
+application.displayScores();
