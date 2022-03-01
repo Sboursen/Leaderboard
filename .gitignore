@@ -6,3 +6,6 @@ dist/
 
 #design
 src/design
+
+#vscode settings
+.vscode

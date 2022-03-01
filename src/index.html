@@ -14,28 +14,23 @@
   <main
     class="flex flex-row gap-20 justify-center items-start m-20">
     <section
-      class="scores flex flex-col gap-6 w-full justify-between items-center">
+      class="scores flex flex-col gap-6 w-full justify-between items-center self-stretch h-full">
       <div
-        class="header flex justify-between items-center w-full">
+        class="header flex justify-between items-center w-full self-start">
         <h2 class="text-3xl py-3">Recent scores
         </h2>
         <button type="button"
-          class="button">Refresh</button>
+          class="refresh-button button">Refresh</button>
       </div>
-      <ul class="list border-4 border-black w-full">
-        <li><span>Name: 100</span></li>
-        <li><span>Name: 200</span></li>
-        <li><span>Name: 300</span></li>
-        <li><span>Name: 400</span></li>
-        <li><span>Name: 500</span></li>
-        <li><span>Name: 600</span></li>
+      <ul
+        class="list border-4 border-black w-full min-h-full">
       </ul>
     </section>
     <section
-      class="add-score flex flex-col gap-4 w-full justify-between items-center">
+      class="add-score flex flex-col gap-4 w-full h-full justify-between items-center">
       <h2 class="text-3xl py-4">Add your score</h2>
       <form action="#"
-        class="submit-score flex flex-col gap-6">
+        class="submit-score flex flex-col gap-6 h-full">
         <label for="name">
           <input class="input" type="text" id="name-input"
             name="name" placeholder="Your name">
@@ -46,7 +41,7 @@
             name="score" placeholder="Your score">
         </label>
         <button type="submit"
-          class="button self-end">Submit</button>
+          class="submit-button button self-end">Submit</button>
       </form>
     </section>
   </main>
