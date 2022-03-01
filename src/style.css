@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+.input {
+  @apply border-4 border-black p-2 placeholder:text-slate-500;
+}
+
+.list li {
+  @apply py-1 px-2 even:bg-slate-300;
+}
+
+.button {
+  @apply shadow-md shadow-black px-3 text-lg border-4 border-black w-fit;
+}

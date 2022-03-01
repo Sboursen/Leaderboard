@@ -8,16 +8,21 @@
   <title>Leaderboard</title>
 </head>
 
-<body class=" bg-white w-full h-full">
-  <h1 class="text-5xl">Leaderboard</h1>
-  <main>
-    <section class="scores">
-      <div class="header">
-        <h2 class="text-2xl">Recent scores</h2>
+<body class=" bg-white w-full h-screen font-body font-bold">
+  <h1 class="block w-full text-5xl py-12 px-9">Leaderboard
+  </h1>
+  <main
+    class="flex flex-row gap-20 justify-center items-start m-20">
+    <section
+      class="scores flex flex-col gap-6 w-full justify-between items-center">
+      <div
+        class="header flex justify-between items-center w-full">
+        <h2 class="text-3xl py-3">Recent scores
+        </h2>
         <button type="button"
-          class="text-lg shadow-lg">Refresh</button>
+          class="button">Refresh</button>
       </div>
-      <ul class="list">
+      <ul class="list border-4 border-black w-full">
         <li><span>Name: 100</span></li>
         <li><span>Name: 200</span></li>
         <li><span>Name: 300</span></li>
@@ -26,18 +31,22 @@
         <li><span>Name: 600</span></li>
       </ul>
     </section>
-    <section class="add-score">
-      <h2 class="text-2xl">Add you score</h2>
-      <form action="#" class="submit-score">
+    <section
+      class="add-score flex flex-col gap-4 w-full justify-between items-center">
+      <h2 class="text-3xl py-4">Add your score</h2>
+      <form action="#"
+        class="submit-score flex flex-col gap-6">
         <label for="name">
-          <input type="text" id="name-input" name="name">
+          <input class="input" type="text" id="name-input"
+            name="name" placeholder="Your name">
         </label>
 
         <label for="score">
-          <input type="text" id="score-input" name="score">
+          <input class="input" type="text" id="score-input"
+            name="score" placeholder="Your score">
         </label>
         <button type="submit"
-          class="text-lg shadow-lg"></button>
+          class="button self-end">Submit</button>
       </form>
     </section>
   </main>
