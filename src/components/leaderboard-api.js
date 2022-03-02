@@ -6,9 +6,17 @@ export default class LeaderBoard {
     this.gameName = gameName;
     this.gameEndpoint = `${url}games/`;
     this.defaultGameId = 'kybUuoT0GHauBW6cK4us';
+
     this.#createNewGame().then((json) => {
       [, , , this.defaultGameId] = json.result.split(' ');
+      console.log(this.defaultGameId);
     });
+
+    this.scoresEndpoint = `${url}games/${this.defaultGameId}/scores/`;
+
+    this.getData(this.scoresEndpoint).then((data) =>
+      console.log(data),
+    );
   }
 
   #createNewGame = async (
@@ -17,9 +25,9 @@ export default class LeaderBoard {
   ) => {
     let result;
     if (
-      url
-        !== 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/'
-      || data.name !== 'the game of life'
+      url !==
+        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/' ||
+      data.name !== 'the game of life'
     ) {
       const response = await fetch(url, {
         method: 'POST',
@@ -32,10 +40,26 @@ export default class LeaderBoard {
       const newGameId = await response.json();
       result = newGameId;
     } else {
-      result = new Promise((resolve, reject) => {
-        resolve(this.defaultGameId);
+      result = new Promise((resolve) => {
+        const emulateResponse = {
+          result: [1, 1, 1, this.defaultGameId].join(' '),
+        };
+        resolve(emulateResponse);
       });
     }
     return result;
+  };
+
+  getData = async (url = this.scoresEndpoint) => {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  };
+
+  addData = async (
+    url = this.scoresEndpoint,
+    { name, score },
+  ) => {
+    
   };
 }
