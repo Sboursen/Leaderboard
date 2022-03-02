@@ -17,6 +17,11 @@ export default class LeaderBoard {
     this.getData(this.scoresEndpoint).then((data) =>
       console.log(data),
     );
+
+    this.addData(this.scoresEndpoint, {
+      user: 'Soufiane',
+      score: 100,
+    }).then((data) => console.log(data));
   }
 
   #createNewGame = async (
@@ -42,7 +47,12 @@ export default class LeaderBoard {
     } else {
       result = new Promise((resolve) => {
         const emulateResponse = {
-          result: [1, 1, 1, this.defaultGameId].join(' '),
+          result: [
+            null,
+            null,
+            null,
+            this.defaultGameId,
+          ].join(' '),
         };
         resolve(emulateResponse);
       });
@@ -58,8 +68,17 @@ export default class LeaderBoard {
 
   addData = async (
     url = this.scoresEndpoint,
-    { name, score },
+    { user, score },
   ) => {
-    
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ user, score }),
+    });
+
+    const data = await response.json();
+    return data;
   };
 }
