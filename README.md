@@ -59,7 +59,7 @@ Feel free to check the [issues page](../../issues/).
 
 Give a ⭐️ if you like this project!
 
-## Achnoledgements
+## Acknowledgments
 
 - <a href="https://iconscout.com/icons/leaderboard" target="_blank">Leaderboard Icon</a> by <a href="https://iconscout.com/contributors/story-bell">Story Bell</a> on <a href="https://iconscout.com">Iconscout</a>
 
