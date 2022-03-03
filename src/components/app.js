@@ -1,6 +1,6 @@
 import LeaderBoard from './leaderboard-api';
 import Score from './score';
-import { scoreList, sortArrayByProperty } from './utils';
+import { scoreList } from './utils';
 
 export default class Application {
   constructor() {
@@ -8,7 +8,6 @@ export default class Application {
     this.scoreData = [];
     this.scoreList = scoreList;
     this.getAllScores();
-    this.maxDisplayedScores = 10;
   }
 
   getAllScores = () =>
@@ -17,13 +16,7 @@ export default class Application {
       .then((data) => [...data.result])
       .then((result) => {
         this.scoreData = result;
-        this.#sortLeaderboardByScore();
-        console.log(this.scoreData);
-        const toBeDisplayedScores = this.scoreData.slice(
-          0,
-          this.maxDisplayedScores,
-        );
-        this.#displayScores(toBeDisplayedScores);
+        this.#displayScores();
       });
 
   #createScoreElement = (score) =>
@@ -33,9 +26,9 @@ export default class Application {
     this.scoreList.innerHTML = '';
   };
 
-  #displayScores = (scores) => {
+  #displayScores = () => {
     this.#clearList();
-    const ulContent = scores.reduce(
+    const ulContent = this.scoreData.reduce(
       (content, userScore) => {
         const score = new Score(
           userScore.user,
@@ -48,12 +41,5 @@ export default class Application {
       '',
     );
     this.scoreList.innerHTML = ulContent;
-  };
-
-  #sortLeaderboardByScore = () => {
-    this.scoreData = sortArrayByProperty(
-      this.scoreData,
-      'score',
-    );
   };
 }
