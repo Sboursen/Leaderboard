@@ -18,3 +18,7 @@
 .button {
   @apply shadow-md shadow-black px-3 text-lg border-4 border-black w-fit;
 }
+
+.header {
+  text-shadow: 2px 2px white;
+}
