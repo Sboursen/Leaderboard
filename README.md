@@ -15,8 +15,8 @@
 ## Milestones
 
 - [x] Milestone 1: **Project Structure**
-- [ ] Milestone 2: **Send and receive data from API.**
-- [ ] Milestone 3: **Final touches.**
+- [x] Milestone 2: **Send and receive data from API.**
+- [x] Milestone 3: **Final touches.**
 
 ## sneak peek
 
