@@ -15,14 +15,12 @@ export default class Application {
     this.scoreData = [];
     this.scoreList = scoreList;
     this.maxDisplayed = 10;
-    this.getAllScores();
 
     // dom operations
     this.refreshButton = refreshButton;
     this.submitButton = submitButton;
     this.nameInput = nameInput;
     this.scoreInput = scoreInput;
-    this.#registerEvents();
   }
 
   #registerEvents = () => {
@@ -36,7 +34,12 @@ export default class Application {
     );
   };
 
-  #refreshScoreList = (e) => {
+  initialize = () => {
+    this.getAllScores();
+    this.#registerEvents();
+  };
+
+  #refreshScoreList = () => {
     const newScores = this.#sortAndSliceByScores(
       this.scoreData,
     );
@@ -59,36 +62,35 @@ export default class Application {
   #updateScoreData = ({ user, score }) => {
     this.scoreData.push({ user, score });
 
-    this.leaderboard
-      .addData(this.leaderboard.scoresEndpoint, {
+    this.leaderboard.addData(
+      this.leaderboard.scoresEndpoint,
+      {
         user,
         score,
-      });
+      },
+    );
   };
 
-  getAllScores = () =>
-    this.leaderboard
-      .getData()
-      .then((data) => [...data.result])
-      .then((result) => {
-        this.scoreData = result;
-        const toBeDisplayed = this.#sortAndSliceByScores(
-          this.scoreData,
-        );
-        this.#displayScores(toBeDisplayed);
-      });
+  getAllScores = () => this.leaderboard
+    .getData()
+    .then((data) => [...data.result])
+    .then((result) => {
+      this.scoreData = result;
+      const toBeDisplayed = this.#sortAndSliceByScores(
+        this.scoreData,
+      );
+      this.#displayScores(toBeDisplayed);
+    });
 
   #sortAndSliceByScores = (
     scores,
     maxDisplayed = this.maxDisplayed,
-  ) =>
-    sortArrayByProperty(this.scoreData, 'score').slice(
-      0,
-      this.maxDisplayed,
-    );
+  ) => sortArrayByProperty(this.scoreData, 'score').slice(
+    0,
+    maxDisplayed,
+  );
 
-  #createScoreElement = (score) =>
-    `<li>${score.getName()}: ${score.getScore()}</li>`;
+  #createScoreElement = (score) => `<li>${score.getName()}: ${score.getScore()}</li>`;
 
   #clearList = () => {
     this.scoreList.innerHTML = '';
@@ -107,8 +109,7 @@ export default class Application {
           userScore.user,
           userScore.score,
         );
-        const scoreElement =
-          this.#createScoreElement(score);
+        const scoreElement = this.#createScoreElement(score);
         return `${content}\n${scoreElement}`;
       },
       '',
