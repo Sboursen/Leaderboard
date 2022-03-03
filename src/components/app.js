@@ -1,6 +1,10 @@
 import LeaderBoard from './leaderboard-api';
 import Score from './score';
-import { scoreList, sortArrayByProperty } from './utils';
+import {
+  scoreList,
+  sortArrayByProperty,
+  refreshButton,
+} from './utils';
 
 export default class Application {
   constructor() {
@@ -9,7 +13,26 @@ export default class Application {
     this.scoreList = scoreList;
     this.maxDisplayed = 10;
     this.getAllScores();
+
+    // dom operations
+    this.refreshButton = refreshButton;
+    this.#registerEvents();
   }
+
+  #registerEvents = () => {
+    this.refreshButton.addEventListener(
+      'click',
+      this.#refreshScoreList,
+    );
+  };
+
+  #refreshScoreList = (e) => {
+    const newScores = this.#sortAndSliceByScores(
+      this.scoreData,
+    );
+    console.log('refresh');
+    this.#displayScores(newScores);
+  };
 
   getAllScores = () =>
     this.leaderboard
@@ -17,14 +40,16 @@ export default class Application {
       .then((data) => [...data.result])
       .then((result) => {
         this.scoreData = result;
-        const toBeDisplayed = this.#sortByScores(
+        const toBeDisplayed = this.#sortAndSliceByScores(
           this.scoreData,
         );
         this.#displayScores(toBeDisplayed);
-        console.log(this.scoreData);
       });
 
-  #sortByScores = (scores) =>
+  #sortAndSliceByScores = (
+    scores,
+    maxDisplayed = this.maxDisplayed,
+  ) =>
     sortArrayByProperty(this.scoreData, 'score').slice(
       0,
       this.maxDisplayed,
