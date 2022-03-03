@@ -14,7 +14,7 @@ export default class Application {
     this.leaderboard = new LeaderBoard();
     this.scoreData = [];
     this.scoreList = scoreList;
-    this.maxDisplayed = 10;
+    this.maxDisplayed = 1000;
 
     // dom operations
     this.refreshButton = refreshButton;
@@ -90,7 +90,15 @@ export default class Application {
     maxDisplayed,
   );
 
-  #createScoreElement = (score) => `<li>${score.getName()}: ${score.getScore()}</li>`;
+  #createScoreElement = (score) => `
+          <li>
+          <div>
+            <i class="fas fa-medal"></i>
+          </div>
+          <div class="name-score">${score.getName()}: ${score.getScore()}</div>
+          <div>
+          </div>
+        </li>`;
 
   #clearList = () => {
     this.scoreList.innerHTML = '';

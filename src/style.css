@@ -1,19 +1,69 @@
 /* stylelint-disable csstree/validator */
 /* stylelint-disable scss/at-rule-no-unknown */
 @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@100&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .input {
-  @apply border-4 border-black p-2 placeholder:text-slate-500;
+  @apply border-4 border-st rounded p-2 placeholder:text-slate-500 text-sky-900;
+  @apply font-black text-xl;
 }
 
 .list li {
-  @apply py-1 px-2 even:bg-slate-300;
+  @apply py-1 px-2 my-2 rounded-full h-12 bg-white border-red-500 text-sky-900 text-lg;
+  @apply flex items-center relative justify-between shadow-sm;
+  @apply text-2xl;
+}
+
+.list li div:last-of-type {
+  @apply h-10 w-10 flex justify-center items-center;
+  @apply rounded-tr-full rounded-bl-full rounded-br-full;
+  @apply text-xl border-2;
+  @apply relative left-1;
+  @apply border-th text-th bg-th;
+}
+
+.list li div:first-of-type {
+  @apply h-10 w-10 flex justify-center items-center;
+  @apply rounded-tr-full rounded-tl-full rounded-bl-full;
+  @apply text-xl border-2;
+  @apply relative -left-1;
+  @apply border-th text-th bg-th;
+}
+
+.list li div:first-of-type i {
+  @apply bg-white p-[6px] rounded-full flex justify-center items-center;
+}
+
+.list li:nth-child(1) div:first-of-type,
+.list li:nth-child(1) div:last-of-type {
+  @apply border-st text-st bg-st;
+}
+
+.list li:nth-child(2) div:first-of-type,
+.list li:nth-child(2) div:last-of-type {
+  @apply border-nd text-nd bg-nd;
+}
+
+.list li:nth-child(3) div:first-of-type,
+.list li:nth-child(3) div:last-of-type {
+  @apply border-rd text-rd bg-rd;
+}
+
+.list li div.name-score {
+  @apply w-full font-bold flex items-center pl-3 pt-1;
 }
 
 .button {
-  @apply shadow-md shadow-black px-3 text-lg border-4 border-black w-fit;
+  @apply shadow-sm px-3 pt-1 text-2xl font-black border-4 border-white w-fit;
+  @apply rounded-xl text-sky-900;
+  @apply hover:text-bittersweet hover:bg-white;
+}
+
+.header {
+  text-shadow: 2px 2px white;
 }
