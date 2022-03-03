@@ -4,6 +4,9 @@ import {
   scoreList,
   sortArrayByProperty,
   refreshButton,
+  submitButton,
+  nameInput,
+  scoreInput,
 } from './utils';
 
 export default class Application {
@@ -16,6 +19,9 @@ export default class Application {
 
     // dom operations
     this.refreshButton = refreshButton;
+    this.submitButton = submitButton;
+    this.nameInput = nameInput;
+    this.scoreInput = scoreInput;
     this.#registerEvents();
   }
 
@@ -24,14 +30,40 @@ export default class Application {
       'click',
       this.#refreshScoreList,
     );
+    this.submitButton.addEventListener(
+      'click',
+      this.#submitScore,
+    );
   };
 
   #refreshScoreList = (e) => {
     const newScores = this.#sortAndSliceByScores(
       this.scoreData,
     );
-    console.log('refresh');
     this.#displayScores(newScores);
+  };
+
+  #submitScore = (e) => {
+    e.preventDefault();
+    const user = this.nameInput.value;
+    const score = Number(this.scoreInput.value);
+    const newUserScore = {
+      user,
+      score,
+    };
+
+    this.#updateScoreData(newUserScore);
+    this.#clearInputElements();
+  };
+
+  #updateScoreData = ({ user, score }) => {
+    this.scoreData.push({ user, score });
+
+    this.leaderboard
+      .addData(this.leaderboard.scoresEndpoint, {
+        user,
+        score,
+      });
   };
 
   getAllScores = () =>
@@ -60,6 +92,11 @@ export default class Application {
 
   #clearList = () => {
     this.scoreList.innerHTML = '';
+  };
+
+  #clearInputElements = () => {
+    this.nameInput.value = '';
+    this.scoreInput.value = '';
   };
 
   #displayScores = (toBeDisplayed) => {

@@ -1,19 +1,19 @@
 export default class Score {
-  constructor(name, score = 100) {
-    this.name = name;
+  constructor(user, score = 100) {
+    this.user = user;
     this.score = score;
   }
 
-  getName = () => this.name;
+  getName = () => this.user;
 
   getScore = () => this.score;
 
-  setName = (name) => {
-    if (this.#isNameValid(name) === 1) {
-      this.name = name;
-    } else if (this.#isNameValid(name) === 0) {
+  setName = (user) => {
+    if (this.#isNameValid(user) === 1) {
+      this.user = user;
+    } else if (this.#isNameValid(user) === 0) {
       throw new Error('ERROR: NAME CAN NOT BE EMPTY');
-    } else if (this.#isNameValid(name) === -1) {
+    } else if (this.#isNameValid(user) === -1) {
       throw new Error('ERROR: NAME IS NOT A STRING');
     }
   };
@@ -36,11 +36,11 @@ export default class Score {
     return res;
   };
 
-  #isNameValid = (name) => {
+  #isNameValid = (user) => {
     let res = 1;
-    if (typeof name !== 'string') {
+    if (typeof user !== 'string') {
       res = -1;
-    } else if (name.length === 0) {
+    } else if (user.length === 0) {
       res = 0;
     } else {
       res = 1;
