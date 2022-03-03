@@ -71,26 +71,36 @@ export default class Application {
     );
   };
 
-  getAllScores = () => this.leaderboard
-    .getData()
-    .then((data) => [...data.result])
-    .then((result) => {
-      this.scoreData = result;
-      const toBeDisplayed = this.#sortAndSliceByScores(
-        this.scoreData,
-      );
-      this.#displayScores(toBeDisplayed);
-    });
+  getAllScores = () =>
+    this.leaderboard
+      .getData()
+      .then((data) => [...data.result])
+      .then((result) => {
+        this.scoreData = result;
+        const toBeDisplayed = this.#sortAndSliceByScores(
+          this.scoreData,
+        );
+        this.#displayScores(toBeDisplayed);
+      });
 
   #sortAndSliceByScores = (
     scores,
     maxDisplayed = this.maxDisplayed,
-  ) => sortArrayByProperty(this.scoreData, 'score').slice(
-    0,
-    maxDisplayed,
-  );
+  ) =>
+    sortArrayByProperty(this.scoreData, 'score').slice(
+      0,
+      maxDisplayed,
+    );
 
-  #createScoreElement = (score) => `<li>${score.getName()}: ${score.getScore()}</li>`;
+  #createScoreElement = (score) => `
+          <li>
+          <div>
+            <i class="fas fa-medal"></i>
+          </div>
+          <div class="name-score">${score.getName()}: ${score.getScore()}</div>
+          <div>
+          </div>
+        </li>`;
 
   #clearList = () => {
     this.scoreList.innerHTML = '';
@@ -109,7 +119,8 @@ export default class Application {
           userScore.user,
           userScore.score,
         );
-        const scoreElement = this.#createScoreElement(score);
+        const scoreElement =
+          this.#createScoreElement(score);
         return `${content}\n${scoreElement}`;
       },
       '',
