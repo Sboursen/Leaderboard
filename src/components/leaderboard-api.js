@@ -5,7 +5,7 @@ export default class LeaderBoard {
   ) {
     this.gameName = gameName;
     this.gameEndpoint = `${url}games/`;
-    this.defaultGameId = 'kybUuoT0GHauBW6cK4us';
+    this.defaultGameId = 'kybUuoT0GHauBW6cK4ua';
 
     this.#createNewGame().then((json) => {
       [, , , this.defaultGameId] = json.result.split(' ');
@@ -14,14 +14,14 @@ export default class LeaderBoard {
 
     this.scoresEndpoint = `${url}games/${this.defaultGameId}/scores/`;
 
-    this.getData(this.scoresEndpoint).then((data) =>
-      console.log(data),
-    );
-
     this.addData(this.scoresEndpoint, {
       user: 'Soufiane',
       score: 100,
     }).then((data) => console.log(data));
+
+    this.getData(this.scoresEndpoint).then((data) =>
+      console.log(data),
+    );
   }
 
   #createNewGame = async (
