@@ -53,11 +53,13 @@
 }
 
 .list li div.name-score {
-  @apply w-full font-bold flex items-center pl-3;
+  @apply w-full font-bold flex items-center pl-3 pt-1;
 }
 
 .button {
-  @apply shadow-md shadow-black px-3 text-lg border-4 border-black w-fit;
+  @apply shadow-sm px-3 pt-1 text-2xl font-black border-4 border-white w-fit;
+  @apply rounded-xl text-sky-900;
+  @apply hover:text-bittersweet hover:bg-white;
 }
 
 .header {
