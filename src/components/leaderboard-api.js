@@ -9,19 +9,9 @@ export default class LeaderBoard {
 
     this.#createNewGame().then((json) => {
       [, , , this.defaultGameId] = json.result.split(' ');
-      console.log(this.defaultGameId);
     });
 
     this.scoresEndpoint = `${url}games/${this.defaultGameId}/scores/`;
-
-    this.addData(this.scoresEndpoint, {
-      user: 'Soufiane',
-      score: 100,
-    }).then((data) => console.log(data));
-
-    this.getData(this.scoresEndpoint).then((data) =>
-      console.log(data),
-    );
   }
 
   #createNewGame = async (

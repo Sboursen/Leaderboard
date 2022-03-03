@@ -1,31 +1,46 @@
-import leaderBoard from './api';
+import LeaderBoard from './leaderboard-api';
 import Score from './score';
 import { scoreList } from './utils';
 
 export default class Application {
   constructor() {
-    this.leaderBoard = leaderBoard;
+    this.leaderboard = new LeaderBoard();
+    this.scoreData = [];
     this.scoreList = scoreList;
+    this.getAllScores();
   }
 
-  #getScoreFromAPI = (score) => {
-    const scoreObj = new Score(score.name, score.score);
-    return scoreObj;
-  };
+  getAllScores = () =>
+    this.leaderboard
+      .getData()
+      .then((data) => [...data.result])
+      .then((result) => {
+        this.scoreData = result;
+        console.log(result);
+        this.#displayScores();
+      });
 
-  #createScoreElement = (score) => `<li>${score.getName()}: ${score.getScore()}</li>`;
+  #createScoreElement = (score) =>
+    `<li>${score.getName()}: ${score.getScore()}</li>`;
 
   #clearList = () => {
     this.scoreList.innerHTML = '';
   };
 
-  displayScores = () => {
+  #displayScores = () => {
     this.#clearList();
-    let allScores = '';
-    this.leaderBoard.forEach((s) => {
-      const score = this.#getScoreFromAPI(s);
-      allScores += this.#createScoreElement(score);
-    });
-    this.scoreList.innerHTML = allScores;
+    const ulContent = this.scoreData.reduce(
+      (content, userScore) => {
+        const score = new Score(
+          userScore.user,
+          userScore.score,
+        );
+        const scoreElement =
+          this.#createScoreElement(score);
+        return `${content}\n${scoreElement}`;
+      },
+      '',
+    );
+    this.scoreList.innerHTML = ulContent;
   };
 }

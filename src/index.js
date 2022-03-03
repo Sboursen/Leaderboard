@@ -1,8 +1,4 @@
 import './style.css';
-import LeaderBoard from './components/leaderboard-api';
+import Application from './components/app';
 
-// const application = new Application();
-
-// application.displayScores();
-
-const leaderBoard = new LeaderBoard();
+const application = new Application();
