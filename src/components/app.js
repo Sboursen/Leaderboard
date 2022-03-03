@@ -16,7 +16,6 @@ export default class Application {
       .then((data) => [...data.result])
       .then((result) => {
         this.scoreData = result;
-        console.log(result);
         this.#displayScores();
       });
 
