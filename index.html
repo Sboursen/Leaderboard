@@ -5,30 +5,43 @@
   <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+    href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+    crossorigin="anonymous" />
   <title>Leaderboard</title>
 <link rel="icon" href="favicon.ico"><script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
 
-<body class=" bg-white w-full h-screen font-body font-bold">
-  <h1 class="block w-full text-5xl py-12 px-9">Leaderboard
-  </h1>
+<body
+  class="bg-gradient-to-b from-rajeh to-bittersweet text-white w-full min-h-screen font-body font-bold">
+  <header
+    class="block w-full text-6xl md:text-8xl pt-12 pb-12 px-9 font-title">
+    <h1 class="text-center md:text-left">
+      The game of life
+    </h1>
+  </header>
+
   <main
-    class="flex flex-row gap-20 justify-center items-start m-20">
+    class="flex flex-col md:flex-row gap-20 justify-center items-start mx-20 mb-20">
     <section
-      class="scores flex flex-col gap-6 w-full justify-between items-center self-stretch h-full">
+      class="scores flex flex-col gap-1 w-full justify-between items-center self-stretch h-full max-h-screen">
       <div
-        class="header flex justify-between items-center w-full self-start">
-        <h2 class="text-3xl py-3">Recent scores
+        class="flex justify-between items-center w-full self-start">
+        <h2 class="text-4xl font-bold p-3">Top
+          Scores
         </h2>
         <button type="button"
           class="refresh-button button">Refresh</button>
       </div>
       <ul
-        class="list border-4 border-black w-full min-h-full">
+        class="list p-2 w-full min-h-full max-h-[60vh] overflow-y-hidden hover:overflow-y-auto">
       </ul>
     </section>
     <section
       class="add-score flex flex-col gap-4 w-full h-full justify-between items-center">
-      <h2 class="text-3xl py-4">Add your score</h2>
+      <h2 class="text-4xl font-bold py-4">Add your
+        score
+      </h2>
       <form class="submit-score flex flex-col gap-6 h-full">
         <label for="name">
           <input class="input" type="text" id="name-input"
