@@ -8,7 +8,8 @@
 @tailwind utilities;
 
 .input {
-  @apply border-4 border-black p-2 placeholder:text-slate-500;
+  @apply border-4 border-st rounded p-2 placeholder:text-slate-500 text-sky-900;
+  @apply font-black text-xl;
 }
 
 .list li {
