@@ -32,12 +32,13 @@
       <form class="submit-score flex flex-col gap-6 h-full">
         <label for="name">
           <input class="input" type="text" id="name-input"
-            name="name" placeholder="Your name">
+            name="name" placeholder="Your name" required>
         </label>
 
         <label for="score">
-          <input class="input" type="text" id="score-input"
-            name="score" placeholder="Your score">
+          <input class="input" type="number"
+            id="score-input" name="score"
+            placeholder="Your score" required>
         </label>
         <button type="button"
           class="submit-button button self-end">Submit</button>
