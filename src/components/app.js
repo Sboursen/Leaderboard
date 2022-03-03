@@ -14,7 +14,7 @@ export default class Application {
     this.leaderboard = new LeaderBoard();
     this.scoreData = [];
     this.scoreList = scoreList;
-    this.maxDisplayed = 10;
+    this.maxDisplayed = 1000;
 
     // dom operations
     this.refreshButton = refreshButton;
@@ -71,26 +71,24 @@ export default class Application {
     );
   };
 
-  getAllScores = () =>
-    this.leaderboard
-      .getData()
-      .then((data) => [...data.result])
-      .then((result) => {
-        this.scoreData = result;
-        const toBeDisplayed = this.#sortAndSliceByScores(
-          this.scoreData,
-        );
-        this.#displayScores(toBeDisplayed);
-      });
+  getAllScores = () => this.leaderboard
+    .getData()
+    .then((data) => [...data.result])
+    .then((result) => {
+      this.scoreData = result;
+      const toBeDisplayed = this.#sortAndSliceByScores(
+        this.scoreData,
+      );
+      this.#displayScores(toBeDisplayed);
+    });
 
   #sortAndSliceByScores = (
     scores,
     maxDisplayed = this.maxDisplayed,
-  ) =>
-    sortArrayByProperty(this.scoreData, 'score').slice(
-      0,
-      maxDisplayed,
-    );
+  ) => sortArrayByProperty(this.scoreData, 'score').slice(
+    0,
+    maxDisplayed,
+  );
 
   #createScoreElement = (score) => `
           <li>
@@ -119,8 +117,7 @@ export default class Application {
           userScore.user,
           userScore.score,
         );
-        const scoreElement =
-          this.#createScoreElement(score);
+        const scoreElement = this.#createScoreElement(score);
         return `${content}\n${scoreElement}`;
       },
       '',
