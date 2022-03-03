@@ -1,12 +1,13 @@
 import LeaderBoard from './leaderboard-api';
 import Score from './score';
-import { scoreList } from './utils';
+import { scoreList, sortArrayByProperty } from './utils';
 
 export default class Application {
   constructor() {
     this.leaderboard = new LeaderBoard();
     this.scoreData = [];
     this.scoreList = scoreList;
+    this.maxDisplayed = 10;
     this.getAllScores();
   }
 
@@ -16,8 +17,18 @@ export default class Application {
       .then((data) => [...data.result])
       .then((result) => {
         this.scoreData = result;
-        this.#displayScores();
+        const toBeDisplayed = this.#sortByScores(
+          this.scoreData,
+        );
+        this.#displayScores(toBeDisplayed);
+        console.log(this.scoreData);
       });
+
+  #sortByScores = (scores) =>
+    sortArrayByProperty(this.scoreData, 'score').slice(
+      0,
+      this.maxDisplayed,
+    );
 
   #createScoreElement = (score) =>
     `<li>${score.getName()}: ${score.getScore()}</li>`;
@@ -26,9 +37,9 @@ export default class Application {
     this.scoreList.innerHTML = '';
   };
 
-  #displayScores = () => {
+  #displayScores = (toBeDisplayed) => {
     this.#clearList();
-    const ulContent = this.scoreData.reduce(
+    const ulContent = toBeDisplayed.reduce(
       (content, userScore) => {
         const score = new Score(
           userScore.user,
