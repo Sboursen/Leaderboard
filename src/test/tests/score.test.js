@@ -2,19 +2,19 @@ import Score from '../../components/score';
 
 describe('Score', () => {
   it('allows to create a new score object', () => {
-    const name = 'soufiane';
+    const user = 'soufiane';
     const score = 100;
 
-    const myScore = new Score(name, score);
+    const myScore = new Score(user, score);
 
-    expect(myScore.name).toEqual(name);
+    expect(myScore.user).toEqual(user);
     expect(myScore.score).toEqual(score);
   });
 
   it('uses getters and setters to access properties', () => {
-    const name = 'soufiane';
+    const user = 'soufiane';
     const score = 100;
-    const myScore = new Score(name, score);
+    const myScore = new Score(user, score);
 
     myScore.setName('Boursen');
     myScore.setScore(1000);
@@ -25,10 +25,10 @@ describe('Score', () => {
     expect(savedScore).toEqual(1000);
   });
 
-  it('throws an error with non string names and non number scores', () => {
-    const name = 'soufiane';
+  it('throws an error with non string users and non number scores', () => {
+    const user = 'soufiane';
     const score = 100;
-    const myScore = new Score(name, score);
+    const myScore = new Score(user, score);
 
     expect(() => myScore.setName('')).toThrowError(
       'ERROR: NAME CAN NOT BE EMPTY',

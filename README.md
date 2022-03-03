@@ -15,8 +15,8 @@
 ## Milestones
 
 - [x] Milestone 1: **Project Structure**
-- [ ] Milestone 1: **Send and receive data from API.**
-- [ ] Milestone 1: **Final touches.**
+- [ ] Milestone 2: **Send and receive data from API.**
+- [ ] Milestone 3: **Final touches.**
 
 ## sneak peek
 
@@ -58,6 +58,10 @@ Feel free to check the [issues page](../../issues/).
 ## Show your support
 
 Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- <a href="https://iconscout.com/icons/leaderboard" target="_blank">Leaderboard Icon</a> by <a href="https://iconscout.com/contributors/story-bell">Story Bell</a> on <a href="https://iconscout.com">Iconscout</a>
 
 ## 📝 License
 
