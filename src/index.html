@@ -42,19 +42,28 @@
       <h2 class="text-4xl font-bold py-4">Add your
         score
       </h2>
-      <form class="submit-score flex flex-col gap-6 h-full">
-        <label for="name">
+      <form class="submit-score flex flex-col gap-3 h-full">
+        <label class="pb-3" for="name">
           <input class="input" type="text" id="name-input"
             name="name" placeholder="Your name" required>
         </label>
 
-        <label for="score">
+        <label class="pb-3" for="score">
           <input class="input" type="number"
             id="score-input" name="score"
             placeholder="Your score" required>
         </label>
-        <button type="button"
-          class="submit-button button self-end">Submit</button>
+        <div
+          class="submit-wrapper self-stretch flex flex-col gap-1 items-center">
+          <p id="alert"
+            class="invisible duration-100 ease-out p-2">
+            Your score has
+            been
+            successfully
+            added</p>
+          <button type="button"
+            class="submit-button button w-fit">Submit</button>
+        </div>
       </form>
     </section>
   </main>
