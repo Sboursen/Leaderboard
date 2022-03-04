@@ -8,6 +8,7 @@ import {
   nameInput,
   scoreInput,
   totalScores,
+  alertElement,
 } from './utils';
 
 export default class Application {
@@ -23,6 +24,7 @@ export default class Application {
     this.nameInput = nameInput;
     this.scoreInput = scoreInput;
     this.totalScores = totalScores;
+    this.alertElement = alertElement;
   }
 
   #registerEvents = () => {
@@ -41,6 +43,17 @@ export default class Application {
     this.#registerEvents();
   };
 
+  #isValid = () => {
+    let res = true;
+    if (
+      this.nameInput.value.trim() === '' ||
+      Number.isNaN(this.scoreInput)
+    ) {
+      res = false;
+    }
+    return res;
+  };
+
   #refreshScoreList = () => {
     const newScores = this.#sortAndSliceByScores(
       this.scoreData,
@@ -49,29 +62,32 @@ export default class Application {
   };
 
   #submitScore = (e) => {
-    e.preventDefault();
     const user = this.nameInput.value;
     const score = Number(this.scoreInput.value);
-    const newUserScore = {
-      user,
-      score,
-    };
 
-    this.#updateScoreData(newUserScore);
-    this.#clearInputElements();
-    this.#updateLeaderboardLength();
+    if (this.#isValid()) {
+      const newUserScore = {
+        user,
+        score,
+      };
+
+      this.#updateScoreData(newUserScore);
+      this.#clearInputElements();
+      this.#updateLeaderboardLength();
+    } else {
+      this.#clearInputElements();
+    }
   };
 
   #updateScoreData = ({ user, score }) => {
     this.scoreData.push({ user, score });
 
-    this.leaderboard.addData(
-      this.leaderboard.scoresEndpoint,
-      {
+    this.leaderboard
+      .addData(this.leaderboard.scoresEndpoint, {
         user,
         score,
-      },
-    );
+      })
+      .then(() => alertElement.classList.add('.alert'));
   };
 
   getAllScores = () =>

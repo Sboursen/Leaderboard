@@ -1,21 +1,18 @@
-import {
-  alertElement,
-  submitButton,
-} from './utils';
+import { alertElement, submitButton } from './utils';
 
-function onAnimationComplete(resolve) {
+function onTransitionComplete(resolve) {
   alertElement.removeEventListener(
     'transitionend',
-    onAnimationComplete,
+    onTransitionComplete,
   );
   resolve();
 }
 
 export default function showAlert(e) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     alertElement.addEventListener(
       'transitionend',
-      (e) => onAnimationComplete(alertElement, resolve),
+      (e) => onTransitionComplete(resolve),
       false,
     );
 
