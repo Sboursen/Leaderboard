@@ -8,11 +8,11 @@ function onTransitionComplete(resolve) {
   resolve();
 }
 
-export default function showAlert(e) {
+export default function showAlert() {
   return new Promise((resolve) => {
     alertElement.addEventListener(
       'transitionend',
-      (e) => onTransitionComplete(resolve),
+      () => onTransitionComplete(resolve),
       false,
     );
 
@@ -20,8 +20,4 @@ export default function showAlert(e) {
   });
 }
 
-submitButton.addEventListener('click', (e) =>
-  showAlert(e).then(() =>
-    alertElement.classList.remove('.alert'),
-  ),
-);
+submitButton.addEventListener('click', (e) => showAlert(e).then(() => alertElement.classList.remove('.alert')));
