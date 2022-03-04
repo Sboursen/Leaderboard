@@ -13,6 +13,10 @@
   @apply font-black text-xl;
 }
 
+.alert {
+  visibility: visible !important;
+}
+
 .list li {
   @apply py-1 px-2 my-2 rounded-full h-12 bg-white border-red-500 text-sky-900 text-lg;
   @apply flex items-center relative justify-between shadow-sm;

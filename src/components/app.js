@@ -7,6 +7,8 @@ import {
   submitButton,
   nameInput,
   scoreInput,
+  totalScores,
+  alertElement,
 } from './utils';
 
 export default class Application {
@@ -21,6 +23,8 @@ export default class Application {
     this.submitButton = submitButton;
     this.nameInput = nameInput;
     this.scoreInput = scoreInput;
+    this.totalScores = totalScores;
+    this.alertElement = alertElement;
   }
 
   #registerEvents = () => {
@@ -39,6 +43,17 @@ export default class Application {
     this.#registerEvents();
   };
 
+  #isValid = () => {
+    let res = true;
+    if (
+      this.nameInput.value.trim() === ''
+      || Number.isNaN(this.scoreInput)
+    ) {
+      res = false;
+    }
+    return res;
+  };
+
   #refreshScoreList = () => {
     const newScores = this.#sortAndSliceByScores(
       this.scoreData,
@@ -46,29 +61,33 @@ export default class Application {
     this.#displayScores(newScores);
   };
 
-  #submitScore = (e) => {
-    e.preventDefault();
+  #submitScore = () => {
     const user = this.nameInput.value;
     const score = Number(this.scoreInput.value);
-    const newUserScore = {
-      user,
-      score,
-    };
 
-    this.#updateScoreData(newUserScore);
-    this.#clearInputElements();
+    if (this.#isValid()) {
+      const newUserScore = {
+        user,
+        score,
+      };
+
+      this.#updateScoreData(newUserScore);
+      this.#clearInputElements();
+      this.#updateLeaderboardLength();
+    } else {
+      this.#clearInputElements();
+    }
   };
 
   #updateScoreData = ({ user, score }) => {
     this.scoreData.push({ user, score });
 
-    this.leaderboard.addData(
-      this.leaderboard.scoresEndpoint,
-      {
+    this.leaderboard
+      .addData(this.leaderboard.scoresEndpoint, {
         user,
         score,
-      },
-    );
+      })
+      .then(() => alertElement.classList.add('.alert'));
   };
 
   getAllScores = () => this.leaderboard
@@ -122,6 +141,11 @@ export default class Application {
       },
       '',
     );
+    this.#updateLeaderboardLength();
     this.scoreList.innerHTML = ulContent;
+  };
+
+  #updateLeaderboardLength = () => {
+    this.totalScores.textContent = this.scoreData.length;
   };
 }
