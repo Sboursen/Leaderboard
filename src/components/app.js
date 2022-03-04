@@ -7,6 +7,7 @@ import {
   submitButton,
   nameInput,
   scoreInput,
+  totalScores,
 } from './utils';
 
 export default class Application {
@@ -21,6 +22,7 @@ export default class Application {
     this.submitButton = submitButton;
     this.nameInput = nameInput;
     this.scoreInput = scoreInput;
+    this.totalScores = totalScores;
   }
 
   #registerEvents = () => {
@@ -57,6 +59,7 @@ export default class Application {
 
     this.#updateScoreData(newUserScore);
     this.#clearInputElements();
+    this.#updateLeaderboardLength();
   };
 
   #updateScoreData = ({ user, score }) => {
@@ -71,24 +74,26 @@ export default class Application {
     );
   };
 
-  getAllScores = () => this.leaderboard
-    .getData()
-    .then((data) => [...data.result])
-    .then((result) => {
-      this.scoreData = result;
-      const toBeDisplayed = this.#sortAndSliceByScores(
-        this.scoreData,
-      );
-      this.#displayScores(toBeDisplayed);
-    });
+  getAllScores = () =>
+    this.leaderboard
+      .getData()
+      .then((data) => [...data.result])
+      .then((result) => {
+        this.scoreData = result;
+        const toBeDisplayed = this.#sortAndSliceByScores(
+          this.scoreData,
+        );
+        this.#displayScores(toBeDisplayed);
+      });
 
   #sortAndSliceByScores = (
     scores,
     maxDisplayed = this.maxDisplayed,
-  ) => sortArrayByProperty(this.scoreData, 'score').slice(
-    0,
-    maxDisplayed,
-  );
+  ) =>
+    sortArrayByProperty(this.scoreData, 'score').slice(
+      0,
+      maxDisplayed,
+    );
 
   #createScoreElement = (score) => `
           <li>
@@ -117,11 +122,17 @@ export default class Application {
           userScore.user,
           userScore.score,
         );
-        const scoreElement = this.#createScoreElement(score);
+        const scoreElement =
+          this.#createScoreElement(score);
         return `${content}\n${scoreElement}`;
       },
       '',
     );
+    this.#updateLeaderboardLength();
     this.scoreList.innerHTML = ulContent;
+  };
+
+  #updateLeaderboardLength = () => {
+    this.totalScores.textContent = this.scoreData.length;
   };
 }

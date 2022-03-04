@@ -1,4 +1,7 @@
-import { alertElement, submitButton } from './utils';
+import {
+  alertElement,
+  submitButton,
+} from './utils';
 
 function onAnimationComplete(resolve) {
   alertElement.removeEventListener(

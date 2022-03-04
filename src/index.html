@@ -30,8 +30,15 @@
         <h2 class="text-4xl font-bold p-3">Top
           Scores
         </h2>
-        <button type="button"
-          class="refresh-button button">Refresh</button>
+        <div class="flex gap-1 justify-center items-center">
+          <div
+            class="total-scores rounded-full bg-transparent w-fit px-1 h-10 text-center text-sky-900 text-2xl flex items-center justify-center pt-2 border-4 border-st">
+            0
+          </div>
+          <button type="button"
+            class="refresh-button button">Refresh</button>
+        </div>
+
       </div>
       <ul
         class="list p-2 w-full min-h-full max-h-[60vh] overflow-y-hidden hover:overflow-y-auto">

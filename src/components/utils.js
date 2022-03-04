@@ -11,6 +11,7 @@ export const submitButton = document.querySelector(
 export const refreshButton = document.querySelector(
   '.refresh-button',
 );
+export const totalScores = document.querySelector('.total-scores')
 export function sortArrayByProperty(array, property) {
   return array.sort((a, b) => b[property] - a[property]);
 }
