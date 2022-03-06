@@ -67,7 +67,7 @@ export default class Application {
     this.#displayScores(newScores);
   };
 
-  #submitScore = () => {
+  #submitScore = async () => {
     const user = this.nameInput.value;
     const score = Number(this.scoreInput.value);
 
@@ -79,21 +79,32 @@ export default class Application {
 
       this.#updateScoreData(newUserScore);
       this.#clearInputElements();
-      this.#updateLeaderboardLength();
     } else {
       this.#clearInputElements();
     }
   };
 
   #updateScoreData = ({ user, score }) => {
-    this.scoreData.push({ user, score });
-
+    alertElement.textContent = 'SAVING ....';
     this.leaderboard
       .addData(this.leaderboard.scoresEndpoint, {
         user,
         score,
       })
-      .then(() => alertElement.classList.add('.alert'));
+      .then(() => {
+        alertElement.textContent = 'SUCCESS';
+        this.scoreData.push({ user, score });
+        this.#updateLeaderboardLength();
+        setTimeout(() => {
+          alertElement.textContent = '';
+        }, 2000);
+      })
+      .catch(() => {
+        alertElement.textContent = 'FAILURE';
+        setTimeout(() => {
+          alertElement.textContent = '';
+        }, 2000);
+      });
   };
 
   getAllScores = () =>

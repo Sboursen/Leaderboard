@@ -1,6 +1,6 @@
 import { alertElement, submitButton } from './utils';
 
-function onTransitionComplete(resolve) {
+function doOnSubmitButtonClicked(resolve) {
   alertElement.removeEventListener(
     'transitionend',
     onTransitionComplete,
