@@ -37,8 +37,7 @@
 
 - Clone [the GitHub Repository](https://github.com/Sboursen/Leaderboard)
 - Go to the Project `cd Leaderboard`
-- Run `npm install` to install the _dependencies_
-  \_ Run `npm run start` to run the live server.
+- Run `npm install` to install the _dependencies_ Run `npm run start` to run the live server.
 
 ## About me
 
