@@ -5,7 +5,7 @@ export default class LeaderBoard {
   ) {
     this.gameName = gameName;
     this.gameEndpoint = `${url}games/`;
-    this.defaultGameId = 'kybUuoT0GHauBW6cK4uc';
+    this.defaultGameId = 'kybUuoT0GHauBW6cK4ud';
 
     this.#createNewGame().then((json) => {
       [, , , this.defaultGameId] = json.result.split(' ');
@@ -20,9 +20,9 @@ export default class LeaderBoard {
   ) => {
     let result;
     if (
-      url
-        !== 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/'
-      || data.name !== 'the game of life'
+      url !==
+        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/' ||
+      data.name !== 'the game of life'
     ) {
       const response = await fetch(url, {
         method: 'POST',
