@@ -11,6 +11,8 @@ import {
   alertElement,
 } from './utils';
 
+import { savingAnimation } from './animations';
+
 export default class Application {
   constructor() {
     this.leaderboard = new LeaderBoard();
@@ -85,7 +87,7 @@ export default class Application {
   };
 
   #updateScoreData = ({ user, score }) => {
-    alertElement.textContent = 'SAVING ....';
+    alertElement.innerHTML = savingAnimation;
     this.leaderboard
       .addData(this.leaderboard.scoresEndpoint, {
         user,
