@@ -11,6 +11,11 @@ import {
   alertElement,
 } from './utils';
 
+import {
+  savingAnimation,
+  animateRefreshButton,
+} from './animations';
+
 export default class Application {
   constructor() {
     this.leaderboard = new LeaderBoard();
@@ -47,9 +52,15 @@ export default class Application {
     let res = true;
     if (
       this.nameInput.value.trim() === ''
-      || Number.isNaN(this.scoreInput)
+      || Number.isNaN(this.scoreInput.value)
     ) {
       res = false;
+    } else if (
+      this.nameInput.value.length > 20
+      || this.scoreInput.value > 100000
+      || this.scoreInput.value <= 0
+    ) {
+      return false;
     }
     return res;
   };
@@ -58,10 +69,11 @@ export default class Application {
     const newScores = this.#sortAndSliceByScores(
       this.scoreData,
     );
+    this.refreshButton.innerHTML = animateRefreshButton(false);
     this.#displayScores(newScores);
   };
 
-  #submitScore = () => {
+  #submitScore = async () => {
     const user = this.nameInput.value;
     const score = Number(this.scoreInput.value);
 
@@ -73,21 +85,34 @@ export default class Application {
 
       this.#updateScoreData(newUserScore);
       this.#clearInputElements();
-      this.#updateLeaderboardLength();
     } else {
+      alertElement.textContent = 'INVALID INPUT';
       this.#clearInputElements();
     }
   };
 
   #updateScoreData = ({ user, score }) => {
-    this.scoreData.push({ user, score });
-
+    alertElement.innerHTML = savingAnimation;
     this.leaderboard
       .addData(this.leaderboard.scoresEndpoint, {
         user,
         score,
       })
-      .then(() => alertElement.classList.add('.alert'));
+      .then(() => {
+        alertElement.textContent = 'SUCCESS';
+        this.scoreData.push({ user, score });
+        this.#updateLeaderboardLength();
+        this.refreshButton.innerHTML = animateRefreshButton(true);
+        setTimeout(() => {
+          alertElement.textContent = '';
+        }, 3000);
+      })
+      .catch(() => {
+        alertElement.textContent = 'FAILURE';
+        setTimeout(() => {
+          alertElement.textContent = '';
+        }, 3000);
+      });
   };
 
   getAllScores = () => this.leaderboard

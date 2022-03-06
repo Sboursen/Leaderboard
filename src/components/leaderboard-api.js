@@ -5,7 +5,7 @@ export default class LeaderBoard {
   ) {
     this.gameName = gameName;
     this.gameEndpoint = `${url}games/`;
-    this.defaultGameId = 'kybUuoT0GHauBW6cK4uc';
+    this.defaultGameId = 'kybUuoT0GHauBW6cK4ud';
 
     this.#createNewGame().then((json) => {
       [, , , this.defaultGameId] = json.result.split(' ');
