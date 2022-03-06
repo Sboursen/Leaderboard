@@ -52,14 +52,14 @@ export default class Application {
   #isValid = () => {
     let res = true;
     if (
-      this.nameInput.value.trim() === '' ||
-      Number.isNaN(this.scoreInput.value)
+      this.nameInput.value.trim() === ''
+      || Number.isNaN(this.scoreInput.value)
     ) {
       res = false;
     } else if (
-      this.nameInput.value.length > 20 ||
-      this.scoreInput.value > 100000 ||
-      this.scoreInput.value <= 0
+      this.nameInput.value.length > 20
+      || this.scoreInput.value > 100000
+      || this.scoreInput.value <= 0
     ) {
       return false;
     }
@@ -70,8 +70,7 @@ export default class Application {
     const newScores = this.#sortAndSliceByScores(
       this.scoreData,
     );
-    this.refreshButton.innerHTML =
-      animateRefreshButton(false);
+    this.refreshButton.innerHTML = animateRefreshButton(false);
     this.#displayScores(newScores);
   };
 
@@ -107,8 +106,7 @@ export default class Application {
         alertElement.textContent = 'SUCCESS';
         this.scoreData.push({ user, score });
         this.#updateLeaderboardLength();
-        this.refreshButton.innerHTML =
-          animateRefreshButton(true);
+        this.refreshButton.innerHTML = animateRefreshButton(true);
         setTimeout(() => {
           alertElement.textContent = '';
         }, 3000);
@@ -121,26 +119,24 @@ export default class Application {
       });
   };
 
-  getAllScores = () =>
-    this.leaderboard
-      .getData()
-      .then((data) => [...data.result])
-      .then((result) => {
-        this.scoreData = result;
-        const toBeDisplayed = this.#sortAndSliceByScores(
-          this.scoreData,
-        );
-        this.#displayScores(toBeDisplayed);
-      });
+  getAllScores = () => this.leaderboard
+    .getData()
+    .then((data) => [...data.result])
+    .then((result) => {
+      this.scoreData = result;
+      const toBeDisplayed = this.#sortAndSliceByScores(
+        this.scoreData,
+      );
+      this.#displayScores(toBeDisplayed);
+    });
 
   #sortAndSliceByScores = (
     scores,
     maxDisplayed = this.maxDisplayed,
-  ) =>
-    sortArrayByProperty(this.scoreData, 'score').slice(
-      0,
-      maxDisplayed,
-    );
+  ) => sortArrayByProperty(this.scoreData, 'score').slice(
+    0,
+    maxDisplayed,
+  );
 
   #createScoreElement = (score) => `
           <li>
@@ -169,8 +165,7 @@ export default class Application {
           userScore.user,
           userScore.score,
         );
-        const scoreElement =
-          this.#createScoreElement(score);
+        const scoreElement = this.#createScoreElement(score);
         return `${content}\n${scoreElement}`;
       },
       '',
