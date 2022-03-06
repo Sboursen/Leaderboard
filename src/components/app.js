@@ -46,10 +46,16 @@ export default class Application {
   #isValid = () => {
     let res = true;
     if (
-      this.nameInput.value.trim() === ''
-      || Number.isNaN(this.scoreInput)
+      this.nameInput.value.trim() === '' ||
+      Number.isNaN(this.scoreInput.value)
     ) {
       res = false;
+    } else if (
+      this.nameInput.value.length > 20 ||
+      this.scoreInput.value > 100000 ||
+      this.scoreInput.value <= 0
+    ) {
+      return false;
     }
     return res;
   };
@@ -90,24 +96,26 @@ export default class Application {
       .then(() => alertElement.classList.add('.alert'));
   };
 
-  getAllScores = () => this.leaderboard
-    .getData()
-    .then((data) => [...data.result])
-    .then((result) => {
-      this.scoreData = result;
-      const toBeDisplayed = this.#sortAndSliceByScores(
-        this.scoreData,
-      );
-      this.#displayScores(toBeDisplayed);
-    });
+  getAllScores = () =>
+    this.leaderboard
+      .getData()
+      .then((data) => [...data.result])
+      .then((result) => {
+        this.scoreData = result;
+        const toBeDisplayed = this.#sortAndSliceByScores(
+          this.scoreData,
+        );
+        this.#displayScores(toBeDisplayed);
+      });
 
   #sortAndSliceByScores = (
     scores,
     maxDisplayed = this.maxDisplayed,
-  ) => sortArrayByProperty(this.scoreData, 'score').slice(
-    0,
-    maxDisplayed,
-  );
+  ) =>
+    sortArrayByProperty(this.scoreData, 'score').slice(
+      0,
+      maxDisplayed,
+    );
 
   #createScoreElement = (score) => `
           <li>
@@ -136,7 +144,8 @@ export default class Application {
           userScore.user,
           userScore.score,
         );
-        const scoreElement = this.#createScoreElement(score);
+        const scoreElement =
+          this.#createScoreElement(score);
         return `${content}\n${scoreElement}`;
       },
       '',
