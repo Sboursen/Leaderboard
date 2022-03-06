@@ -1,8 +1,8 @@
 /* stylelint-disable csstree/validator */
 /* stylelint-disable scss/at-rule-no-unknown */
-@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@100&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -21,6 +21,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .list::-webkit-scrollbar {
   display: none;
 }
