@@ -11,7 +11,10 @@ import {
   alertElement,
 } from './utils';
 
-import { savingAnimation } from './animations';
+import {
+  savingAnimation,
+  animateRefreshButton,
+} from './animations';
 
 export default class Application {
   constructor() {
@@ -66,6 +69,8 @@ export default class Application {
     const newScores = this.#sortAndSliceByScores(
       this.scoreData,
     );
+    this.refreshButton.innerHTML =
+      animateRefreshButton(false);
     this.#displayScores(newScores);
   };
 
@@ -82,6 +87,7 @@ export default class Application {
       this.#updateScoreData(newUserScore);
       this.#clearInputElements();
     } else {
+      alertElement.textContent = 'INVALID INPUT';
       this.#clearInputElements();
     }
   };
@@ -97,15 +103,17 @@ export default class Application {
         alertElement.textContent = 'SUCCESS';
         this.scoreData.push({ user, score });
         this.#updateLeaderboardLength();
+        this.refreshButton.innerHTML =
+          animateRefreshButton(true);
         setTimeout(() => {
           alertElement.textContent = '';
-        }, 2000);
+        }, 3000);
       })
       .catch(() => {
         alertElement.textContent = 'FAILURE';
         setTimeout(() => {
           alertElement.textContent = '';
-        }, 2000);
+        }, 3000);
       });
   };
 
